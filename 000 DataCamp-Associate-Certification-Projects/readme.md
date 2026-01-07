@@ -1,0 +1,1 @@
+folder contains the SQL solution used to pass the DataCamp Data Analyst Associate Practical Exam. The case study focused on the 'Products' dataset, requiring data cleaning (handling nulls with median/coalesce), validation, and reporting for stakeholders.
