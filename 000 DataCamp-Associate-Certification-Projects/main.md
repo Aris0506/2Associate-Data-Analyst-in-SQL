@@ -16,6 +16,8 @@ The raw data contained missing values, inconsistent data types, and formatting e
 # TASK 1
 Write a query to determine how many products have the year_added value missing. Your output should be a single column, missing_year, with a single row giving the number of missing values.
 
+---
+
 SELECT 
     COUNT(*) AS missing_year
 FROM 
@@ -115,6 +117,7 @@ To find out how the range varies for each product type, your manager has asked y
 
 Write a query to return the product_type, min_price and max_price columns.
 
+---
 -- Write your query for task 3 in this cell
 SELECT 
     product_type, 
@@ -131,7 +134,7 @@ GROUP BY
 The team want to look in more detail at meat and dairy products where the average units sold was greater than ten.
 
 Write a query to return the product_id, price and average_units_sold of the rows of interest to the team.
-
+---
 SELECT 
     product_id, 
     price, 
