@@ -144,3 +144,4 @@ FROM
 WHERE 
     product_type IN ('Meat', 'Dairy') -- Focus on meat and dairy products
     AND average_units_sold > 10 -- Filter rows where average units sold is greater than 10
+---
