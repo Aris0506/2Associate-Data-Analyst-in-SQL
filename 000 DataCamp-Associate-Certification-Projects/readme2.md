@@ -1,4 +1,3 @@
-
 # FoodYum Product Analysis - SQL Data Cleaning Project 🍎
 
 ## 📄 Project Overview
@@ -47,11 +46,11 @@ The dataset contains the following columns with specific cleaning requirements:
 
 WITH median_values AS (
     SELECT
-        
+
         PERCENTILE_CONT(0.5) WITHIN GROUP (
             ORDER BY REGEXP_REPLACE(weight, '[^0-9.]', '', 'g')::NUMERIC
         ) AS median_weight,
-        
+
         PERCENTILE_CONT(0.5) WITHIN GROUP (
             ORDER BY price
         ) AS median_price
@@ -69,38 +68,38 @@ SELECT
         THEN 'Unknown'
         ELSE product_type
     END AS product_type,
-    
+
     CASE
         WHEN brand IS NULL OR brand = '-' THEN 'Unknown'
         ELSE brand
     END AS brand,
-    
+
     ROUND(
         COALESCE(
             REGEXP_REPLACE(weight, '[^0-9.]','', 'g')::NUMERIC, 
             (SELECT median_weight FROM median_values)
         )::NUMERIC, 
     2) AS weight,
-    
+
     ROUND(
         COALESCE(
             price, 
             (SELECT median_price FROM median_values)
         )::NUMERIC, 
     2) AS price,
-    
+
     -- [FIXED] Hapus "OR = ''" karena ini kolom angka
     CASE
         WHEN average_units_sold IS NULL THEN 0
         ELSE average_units_sold
     END AS average_units_sold,
-    
+
     -- [FIXED] Hapus "OR = ''" karena ini kolom angka
     CASE
         WHEN year_added IS NULL THEN 2022
         ELSE year_added
     END AS year_added,
-    
+
     CASE
         WHEN LOWER(stock_location) = 'a' THEN 'A'
         WHEN LOWER(stock_location) = 'b' THEN 'B'
@@ -108,7 +107,7 @@ SELECT
         WHEN LOWER(stock_location) = 'd' THEN 'D'
         ELSE 'Unknown' 
     END AS stock_location
-    
+
 FROM public.products;
 
 
