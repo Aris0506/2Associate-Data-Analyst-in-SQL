@@ -16,7 +16,8 @@ The raw data contained missing values, inconsistent data types, and formatting e
 # TASK 1
 Write a query to determine how many products have the year_added value missing. Your output should be a single column, missing_year, with a single row giving the number of missing values.
 
-``` sql
+---
+
 SELECT 
     COUNT(*) AS missing_year
 FROM 
@@ -24,7 +25,6 @@ FROM
 WHERE 
     year_added IS NULL;
 
-```
 
 
 
@@ -111,7 +111,6 @@ SELECT
     
 FROM public.products;
 
-```
 
 # TASK 3
 To find out how the range varies for each product type, your manager has asked you to determine the minimum and maximum values for each product type.
@@ -130,7 +129,6 @@ WHERE
     price IS NOT NULL -- Ensure valid price values
 GROUP BY 
     product_type
-```
 
 # TASK 4
 The team want to look in more detail at meat and dairy products where the average units sold was greater than ten.
@@ -147,4 +145,3 @@ FROM
 WHERE 
     product_type IN ('Meat', 'Dairy') -- Focus on meat and dairy products
     AND average_units_sold > 10 -- Filter rows where average units sold is greater than 10
-```
