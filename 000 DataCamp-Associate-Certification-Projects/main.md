@@ -16,15 +16,15 @@ The raw data contained missing values, inconsistent data types, and formatting e
 # TASK 1
 Write a query to determine how many products have the year_added value missing. Your output should be a single column, missing_year, with a single row giving the number of missing values.
 
----
 
+``` sql
 SELECT 
     COUNT(*) AS missing_year
 FROM 
     public.products
 WHERE 
     year_added IS NULL;
-
+```
 
 
 
@@ -43,8 +43,8 @@ The dataset contains the following columns with specific cleaning requirements:
 | `year_added` | Nominal | Year product was added to stock. | Replace missing with **2022**. |
 | `stock_location` | Nominal | Warehouse location origin. | Must be one of: **A, B, C, D**. Replace missing with **"Unknown"**. |
 
----
 
+``` sql
 WITH median_values AS (
     SELECT
         
@@ -110,14 +110,14 @@ SELECT
     END AS stock_location
     
 FROM public.products;
-
+```
 
 # TASK 3
 To find out how the range varies for each product type, your manager has asked you to determine the minimum and maximum values for each product type.
 
 Write a query to return the product_type, min_price and max_price columns.
 
----
+``` sql
 -- Write your query for task 3 in this cell
 SELECT 
     product_type, 
@@ -129,12 +129,15 @@ WHERE
     price IS NOT NULL -- Ensure valid price values
 GROUP BY 
     product_type
+```
+
 
 # TASK 4
 The team want to look in more detail at meat and dairy products where the average units sold was greater than ten.
 
 Write a query to return the product_id, price and average_units_sold of the rows of interest to the team.
----
+
+``` sql
 SELECT 
     product_id, 
     price, 
@@ -144,3 +147,4 @@ FROM
 WHERE 
     product_type IN ('Meat', 'Dairy') -- Focus on meat and dairy products
     AND average_units_sold > 10 -- Filter rows where average units sold is greater than 10
+```
